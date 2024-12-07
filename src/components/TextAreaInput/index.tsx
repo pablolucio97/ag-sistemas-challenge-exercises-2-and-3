@@ -11,9 +11,13 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   inputLabel,
   maxTextLength,
   showTextLength,
+  currentTextLength,
   ...rest
 }) => {
-  const remainingTextLength = "";
+  const remainingTextLength =
+    maxTextLength && currentTextLength
+      ? maxTextLength - currentTextLength
+      : maxTextLength;
 
   return (
     <div className="w-full flex flex-col max-h-[200px]">
@@ -28,7 +32,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         {...rest}
       />
       {showTextLength && (
-        <span className="text-gray-700 text-[13px] mx-1 my-0">
+        <span className="text-gray-700 text-xs md:text-sm mx-1 my-1">
           Caracteres restantes: {remainingTextLength}
         </span>
       )}
