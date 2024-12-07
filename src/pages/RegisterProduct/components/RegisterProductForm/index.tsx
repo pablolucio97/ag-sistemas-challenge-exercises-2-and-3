@@ -1,7 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
+import { NumericFormat } from "react-number-format";
 import { Button } from "../../../../components/Button";
 import TextAreaInput from "../../../../components/TextAreaInput";
 import TextInput from "../../../../components/TextInput";
+import { validateBRLFormat } from "../../../../utils/formatBRL";
 
 interface RegisterProductFormProps {
   productName: string;
@@ -24,6 +26,10 @@ const RegisterProductForm: React.FC<RegisterProductFormProps> = ({
   setProductPrice,
   onSubmit,
 }) => {
+  const isPriceValid = useMemo(() => {
+    return validateBRLFormat(productPrice);
+  }, [productPrice]);
+
   return (
     <form className="w-[90%] md:w-[30rem] bg-white shadow-md rounded-md p-8 mt-4 lg:mx-auto">
       <h2 className="text-sm md:text-lg text-gray-900 font-bold mb-2">
@@ -38,11 +44,19 @@ const RegisterProductForm: React.FC<RegisterProductFormProps> = ({
         />
       </div>
       <div className="mb-4">
-        <TextInput
-          inputLabel="Preço"
+        <NumericFormat
           placeholder="Preço do produto em reais. Ex: R$ 39,90"
           value={productPrice}
-          onChange={(val) => setProductPrice(val.target.value)}
+          onValueChange={(values) => {
+            const { value } = values;
+            setProductPrice(value);
+          }}
+          customInput={TextInput}
+          inputLabel="Preço"
+          thousandSeparator={"."}
+          decimalSeparator={","}
+          prefix={"R$ "}
+          className="w-full h-[52px] p-4 border-2 rounded-lg text-gray-700 focus:border-blue-700 focus:border-3 focus:outline-none focus:text-gray-500 bg-white placeholder-custom"
         />
       </div>
       <div className="mb-4">
@@ -56,15 +70,19 @@ const RegisterProductForm: React.FC<RegisterProductFormProps> = ({
           onChange={(val) => setProductDescription(val.target.value)}
         />
       </div>
-      <div className="mb-4">
         <Button
           buttonLabel="Cadastrar produto"
           type="submit"
           isLoading={isLoading}
-          disabled={isLoading}
+          disabled={
+            isLoading ||
+            !productName ||
+            !productPrice ||
+            !productDescription ||
+            !isPriceValid
+          }
           onClick={onSubmit}
         />
-      </div>
     </form>
   );
 };

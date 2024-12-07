@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import toast from "react-hot-toast";
 import Header from "../../components/Header";
+import { ProductsRepositoryImplementation } from "../../repositories/DTOs/implementations/productsImplementation";
+import { parseToBRL } from "../../utils/formatBRL";
 import RegisterProductForm from "./components/RegisterProductForm";
 
 function RegisterProductPage() {
@@ -8,13 +11,38 @@ function RegisterProductPage() {
   const [productDescription, setProductDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      console.log({ productName, productPrice, productDescription });
+  const productsRepository = useMemo(() => {
+    return new ProductsRepositoryImplementation();
+  }, []);
+
+  const handleRegisterProduct = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const data = {
+        nome: productName,
+        preco: parseToBRL(productPrice),
+        descricao: productDescription,
+      };
+      await productsRepository.createProduct(data);
+      toast.success("Produto cadastrado com sucesso!");
+      setProductName("");
+      setProductPrice("");
+      setProductDescription("");
+    } catch (error) {
+      if (error && typeof error === "object" && "statusCode" in error) {
+        if (error.statusCode === 409) {
+          toast.error("Já existe um produto cadastrado com este nome.");
+        } else {
+          toast.error(
+            "Houve um erro ao tentar cadastrar produto. Por favor, tente novamente mais tarde."
+          );
+        }
+      }
+    } finally {
       setIsLoading(false);
-    }, 2000);
-  };
+    }
+  }, [productDescription, productName, productPrice, productsRepository]);
+
   return (
     <div className="w-screen h-full flex flex-col">
       <Header pageTitle="Cadastro de produto" />
@@ -34,7 +62,7 @@ function RegisterProductPage() {
             productDescription={productDescription}
             setProductDescription={setProductDescription}
             isLoading={isLoading}
-            onSubmit={handleSubmit}
+            onSubmit={handleRegisterProduct}
           />
         </div>
       </main>
