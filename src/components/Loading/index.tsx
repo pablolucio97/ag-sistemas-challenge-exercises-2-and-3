@@ -7,7 +7,12 @@ interface LoadingProps {
   hideText?: boolean;
 }
 
-export function Loading({ type, color, text, hideText }: LoadingProps) {
+const Loading: React.FC<LoadingProps> = ({
+  type,
+  color,
+  text,
+  hideText,
+}: LoadingProps) => {
   return (
     <div className="w-full flex flex-col items-center justify-center">
       <ReactLoading
@@ -23,4 +28,6 @@ export function Loading({ type, color, text, hideText }: LoadingProps) {
       )}
     </div>
   );
-}
+};
+
+export default Loading;

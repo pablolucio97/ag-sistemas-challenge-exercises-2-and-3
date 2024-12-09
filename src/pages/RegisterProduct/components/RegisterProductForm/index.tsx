@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useMemo } from "react";
 import { NumericFormat } from "react-number-format";
-import { Button } from "../../../../components/Button";
+import Button from "../../../../components/Button";
 import TextAreaInput from "../../../../components/TextAreaInput";
 import TextInput from "../../../../components/TextInput";
 import { validateBRLFormat } from "../../../../utils/formatBRL";
@@ -70,19 +70,19 @@ const RegisterProductForm: React.FC<RegisterProductFormProps> = ({
           onChange={(val) => setProductDescription(val.target.value)}
         />
       </div>
-        <Button
-          buttonLabel="Cadastrar produto"
-          type="submit"
-          isLoading={isLoading}
-          disabled={
-            isLoading ||
-            !productName ||
-            !productPrice ||
-            !productDescription ||
-            !isPriceValid
-          }
-          onClick={onSubmit}
-        />
+      <Button
+        buttonLabel="Cadastrar produto"
+        type="submit"
+        isLoading={isLoading}
+        disabled={
+          isLoading ||
+          !productName ||
+          !productPrice ||
+          !productDescription ||
+          !isPriceValid
+        }
+        onClick={onSubmit}
+      />
     </form>
   );
 };
