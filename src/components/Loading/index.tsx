@@ -22,7 +22,10 @@ const Loading: React.FC<LoadingProps> = ({
         height={32}
       />
       {!hideText && (
-        <span className="text-gray-800 text-[11px] lg:text-sm font-secondary mt-2">
+        <span
+          className="text-gray-800 text-[11px] lg:text-sm font-secondary mt-2"
+          data-testid="animation-text"
+        >
           {text ? text : "Carregando dados..."}
         </span>
       )}
