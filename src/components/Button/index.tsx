@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button({ buttonLabel, isLoading, ...rest }: ButtonProps) {
   return (
     <button
-      className={`w-full h-[52px] flex items-center justify-center bg-primary normal-case lg:text-base text-sm font-medium font-poppins rounded-lg disabled:opacity-[0.5] text-gray-50 font-secondary bg-[#495782]`}
+      className={`w-full h-[52px] flex items-center justify-center bg-primary normal-case lg:text-base text-sm rounded-lg disabled:opacity-[0.7] text-gray-50 font-bold bg-[#03C1F3]`}
       {...rest}
     >
       {isLoading ? <Loading hideText /> : buttonLabel}

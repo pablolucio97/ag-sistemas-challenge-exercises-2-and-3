@@ -48,7 +48,7 @@ function RegisterProductPage() {
       <Header pageTitle="Cadastro de produto" />
       <main className="flex flex-col bg-gray-50 w-full min-h-screen lg:w-[1080px] mx-auto">
         <div className="w-full max-w-[30rem] flex flex-col mx-auto mt-[4rem] p-4">
-          <h1 className="text-lg md:text-2xl text-gray-900 font-bold">
+          <h1 className="text-lg md:text-2xl text-gray-900 font-bold mt-4">
             Cadastro de produto
           </h1>
           <span className="text-sm md:text-[1rem] text-gray-700 my-2">
