@@ -74,7 +74,7 @@ const RegisterProductForm: React.FC<RegisterProductFormProps> = ({
         buttonLabel="Cadastrar produto"
         type="submit"
         isLoading={isLoading}
-        disabled={
+        isDisabled={
           isLoading ||
           !productName ||
           !productPrice ||
