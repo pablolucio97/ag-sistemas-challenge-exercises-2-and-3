@@ -1,50 +1,29 @@
-# React + TypeScript + Vite
+# AG Sistemas - Desafio Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Este repositório contém a aplicação front-end desenvolvida para as soluções dos exercícios 2 e 3 do desafio proposto. A resposta para o exercício 3 está no arquivo `exercicio3.md`, na raíz do projeto.
+  
+---
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- Vite
+- Tailwind CSS
+- Vitest
+- React Testing Library
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Como executar essa aplicação
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone o repositório.
+2. Execute o comando `npm install` para instalar as dependências.
+3. Crie um arquivo `.env` na raiz do projeto informando as varáveis de ambiente comforme exemplo. As variáveis foram encaminhadas via e-mail dentro do arquivo. envs.txt.
+4. Execute o comando `npm run dev` para iniciar a aplicação.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Observações
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Certifique-se de que o servidor esteja executando antes de executar essa aplicação.
+- Certifique-se de que a aplicação esteja rodando na porta 5173 ou 5174, pois por questões de segurança, o servidor foi configurado para ouvir apenas essas portas.
+- Em caso de qualquer dúvida, me envie um email através de pablolucio_@hotmail.com ou [me contate via WhatsApp](https://api.whatsapp.com/send?phone=5531985187963&text=Hello).
