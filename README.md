@@ -22,6 +22,11 @@
 4. Execute o comando `npm run dev` para iniciar a aplicação.
 
 
+## Executando testes
+
+Foram providenciados testes unitários para os componentes Button, Header e Loading. Execute o comando `npm run test` para executar os testes.
+
+
 ### Observações
 
 - Certifique-se de que o servidor esteja executando antes de executar essa aplicação.
